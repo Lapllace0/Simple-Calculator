@@ -1,0 +1,318 @@
+<html>
+
+<head>
+    <title>TUGAS SESI 5</title>
+</head>
+<style>
+    .container {
+        height: 100vh;
+        background-image: linear-gradient(to top, blue, red);
+    }
+
+    #formlogin {
+        position: relative;
+        top: 300px;
+        text-align: center;
+        background-color: rgb(66, 136, 248);
+        margin-left: 650px;
+        margin-right: 650px;
+        height: 250px;
+        padding-top: 120px;
+        border-radius: 30px;
+        z-index: 3;
+
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    #sapaan {
+        text-align: center;
+        font-size: 70px;
+        position: relative;
+        top: 150px;
+        z-index: 3;
+    }
+
+    #textregister1 {
+        position: relative;
+        bottom: 130px;
+    }
+
+    #usernameregister {
+        position: relative;
+        bottom: 120px;
+        text-align: center;
+        left: 200px;
+        border-radius: 30px;
+        border: 1px solid black;
+        font-size: large;
+    }
+
+    #textregister2 {
+        position: relative;
+        bottom: 120px;
+    }
+
+    #passwordregister {
+        position: relative;
+        bottom: 115px;
+        text-align: center;
+        left: 200px;
+        border-radius: 30px;
+        border: 1px solid black;
+        font-size: large;
+    }
+
+    #registerationbutton {
+        position: relative;
+        bottom: 65px;
+        text-align: center;
+        left: 228px;
+        background-color: rgb(255, 0, 0);
+        border: 1px solid black;
+        border-radius: 5px;
+        color: rgb(0, 0, 0);
+        font-size: large;
+        cursor: pointer;
+    }
+
+    #usernameinput {
+        text-align: center;
+        border-radius: 30px;
+        border: 1px;
+        border-style: solid;
+        border-color: black;
+        font-size: large;
+    }
+
+
+    #buttonlogin {
+        background-color: rgb(18, 156, 6);
+        border: 1px solid black;
+        border-radius: 5px;
+        color: rgb(0, 0, 0);
+        font-size: large;
+        cursor: pointer;
+    }
+
+    #buttonregister {
+        position: relative;
+        right: 1px;
+        border: 1px solid black;
+        border-radius: 5px;
+        font-size: large;
+        background-color: rgb(255, 0, 0);
+        color: rgb(0, 0, 0);
+        cursor: pointer;
+    }
+
+    #passwordinput {
+        border-radius: 30px;
+        border: 1px solid black;
+        font-size: large;
+        text-align: center;
+    }
+
+    #punyaakun {
+        border: none;
+        position: relative;
+        left: 450px;
+        bottom: 85px;
+        background-color: rgb(123, 123, 243);
+        color: black;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1 id="sapaan">SELAMAT DATANG DI PORTAL LOGIN WEBSITE KAMI</h1>
+        <div id="formlogin">
+            <form>
+                <input type="text" placeholder="username" id="usernameinput">
+                <input type="password" placeholder="password" id="passwordinput">
+            </form>
+            <button id="buttonlogin" onclick="onlogin()">Login</button>
+            <br>
+            <br>
+            <h3 id="belumpunyaakun">BELUM PUNYA AKUN?</h3>
+            <button id="buttonregister" onclick="onregister()">REGISTER</button>
+            <h1 id="textregister1">Pilih Username yang Anda Inginkan </h1>
+            <input type="text" placeholder="username" id="usernameregister">
+            <h1 id="textregister2">Buat Password Anda </h1>
+            <input type="password" placeholder="password" id="passwordregister">
+            <div id="diflex">
+                <button id="registerationbutton" onclick="registration()">REGISTER AKUN</button>
+                <button id="punyaakun" onclick="back()">sudah punya akun?</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="application/javascript">
+    let usernameinput = document.getElementById('usernameinput')
+    let passwordinput = document.getElementById('passwordinput')
+    let buttonlogin = document.getElementById('buttonlogin')
+    let buttonregister = document.getElementById('buttonregister')
+    let belumpunyaakun = document.getElementById('belumpunyaakun')
+    let textregister1 = document.getElementById('textregister1')
+    let textregister2 = document.getElementById('textregister2')
+    let usernameregister = document.getElementById('usernameregister')
+    let passwordregister = document.getElementById('passwordregister')
+    let registerationbutton = document.getElementById('registerationbutton')
+    let punyaakun = document.getElementById('punyaakun')
+
+    usernameregister.addEventListener('keydown', function(clicked) {
+        if (clicked.key === 'Enter') {
+            clicked.preventDefault();
+            passwordregister.focus();
+        }
+    })
+    
+    passwordregister.addEventListener('keydown', function(clicked) {
+        if (clicked.key === 'Enter') {
+            clicked.preventDefault();
+            registration();
+        }
+    })
+
+    textregister1.style.display = "none";
+    textregister2.style.display = "none";
+    usernameregister.style.display = "none";
+    passwordregister.style.display = "none";
+    registerationbutton.style.display = "none";
+    punyaakun.style.display = "none";
+    
+    let biodataAdmin = {
+        username: 'admin',
+        password: 'admin123',
+        birthDate: '-',
+        email: 'myCompany@business.com',
+        phoneNumber: '0123',
+    }
+
+    localStorage.setItem("admin", JSON.stringify(biodataAdmin));
+
+    let keyUsername = []
+    for (y = 0; y < localStorage.length; y++) {
+        keyUsername.push(localStorage.key(y))
+    }
+    
+    function back() {
+        location.reload();
+    }
+    
+    usernameinput.addEventListener('keydown', function(clicked) {
+        if (clicked.key === 'Enter') {
+            clicked.preventDefault();
+            passwordinput.focus();
+        }
+    });
+
+    passwordinput.addEventListener('keydown', function(clicked){
+        if (clicked.key === 'Enter') {
+            clicked.preventDefault();
+            onlogin();
+        }
+    });
+
+    function onlogin() {
+        
+        let usernameexist = false
+        for (x = 0; x < localStorage.length; x++) {
+            let retrievedData = JSON.parse(localStorage.getItem(`${localStorage.key(x)}`))
+            if (usernameinput.value == retrievedData.username) {
+                console.log("username benar")
+                sessionStorage.setItem('dataLogin', JSON.stringify(retrievedData))
+                usernameexist = true
+                break
+            }
+        }
+
+        let passwordexist = false
+        if (usernameexist == true) {
+            let pass = sessionStorage.getItem('dataLogin')
+            let retrieved = JSON.parse(pass)
+            if (passwordinput.value == retrieved.password) {
+                console.log("password benar")
+                passwordexist = true;
+            } else {
+                passwordexist = false
+                console.log('password salah')
+            }            
+        }
+
+        let conditionTrue = usernameexist == true && passwordexist == true
+
+        if (conditionTrue == true) {
+            if (usernameinput.value == "admin" && passwordinput.value == "admin123") {
+                alert("login sebagai Admin BERHASIL!")
+                window.location.href = "admin/admin.html";
+            } else {
+                alert("login sebagai user BERHASIL!")
+                let usernameIndex = sessionStorage.setItem('user', `${usernameinput.value}`)
+                console.log(sessionStorage.getItem('user'))
+                window.location.href = "user/userview.html"
+
+            }
+        } else {
+            alert("username atau password salah")
+        }
+
+
+    }
+
+
+    function onregister() {
+        usernameinput.style.display = "none";
+        passwordinput.style.display = "none";
+        buttonlogin.style.display = "none";
+        belumpunyaakun.style.display = "none";
+        buttonregister.style.display = "none";
+        textregister1.style.display = "block";
+        textregister2.style.display = "block";
+        usernameregister.style.display = "block";
+        passwordregister.style.display = "block";
+        registerationbutton.style.display = "block";
+        punyaakun.style.display = "block";
+    }
+
+    function registration() {
+        let usernameregister1 = false
+        for (z = 0; z < localStorage.length; z++) {
+            if (usernameregister.value == localStorage.key(z)) {
+                alert("username sudah terdaftar")
+                usernameregister1 = true;
+                break;
+            }
+        }
+        if (usernameregister1 == false) {
+            if (usernameregister.value != "") {
+                if (passwordregister.value != "") {
+                    localStorage.setItem(usernameregister.value, passwordregister.value)
+                    let biodata = {
+                        username: usernameregister.value,
+                        password: passwordregister.value,
+                        birthDate: 'belum Ada',
+                        email: 'belum Ada',
+                        phoneNumber: 'belum Ada',
+                    }
+                    localStorage.setItem(usernameregister.value, JSON.stringify(biodata))
+                    alert("Registration BERHASIL!")
+                    location.reload();
+                } else {
+
+                    alert("password tidak boleh kosong")
+                }
+            } else {
+                alert("username tidak boleh kosong")
+            }
+        }
+
+    }
+
+</script>
+
+</html>

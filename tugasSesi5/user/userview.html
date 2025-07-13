@@ -1,0 +1,422 @@
+<html>
+
+<head>
+    <title>USER UI</title>
+</head>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    #ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        position: fixed;
+        width: 15%;
+        background-color: rgb(0, 200, 255);
+        font-size: 20px;
+        z-index: 4;
+    }
+
+    .li a {
+        position: relative;
+        text-decoration: none;
+        display: block;
+        color: rgb(0, 0, 0);
+        box-sizing: border-box;
+        padding: 17px;
+        padding-left: 5px;
+    }
+
+    .li#active a {
+        color: white;
+    }
+
+    .li {
+        border: 1px;
+        border-radius: 10px;
+        border-style: none;
+        z-index: 2;
+    }
+
+    #active {
+        color: white;
+        background-color: rgb(63, 84, 247);
+    }
+
+    .li:hover {
+        cursor: pointer;
+    }
+
+    .li:hover:not(#active) {
+        background-color: rgb(106, 122, 246);
+        color: blue;
+    }
+
+    #text {
+        margin-left: 15%;
+
+    }
+
+    #centered {
+        position: relative;
+    }
+
+    .box1 {
+        position: relative;
+        top: 20vh;
+        margin: auto;
+        width: 900px;
+        height: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-style: solid;
+        border-radius: 40px;
+        background-color: rgb(167, 212, 253);
+    }
+
+    #username {
+        position: relative;
+
+    }
+
+
+    #avatarimg {
+        position: absolute;
+        width: 200px;
+        left: 90px;
+        top: 85px;
+
+    }
+
+    #biodata {
+        position: absolute;
+        width: 440px;
+        padding-top: 130px;
+        right: 30px;
+        border-style: solid;
+        border-radius: 40px;
+        border-color: rgb(0, 157, 255);
+        background-color: rgb(0, 157, 255);
+    }
+
+    #editProfile {
+        position: relative;
+        top: 200px;
+        right: 100px;
+        font-size: 25px;
+        background-color: green;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    #hapusAkun {
+        position: relative;
+        top: 200px;
+        right: 410px;
+        font-size: 25px;
+        background-color: red;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    .biodata-text {
+        position: relative;
+        left: 20px;
+        bottom: 100px;
+        display: flex;
+        gap: 4px;
+    }
+
+    #usernameBaru {
+        position: absolute;
+        left: 120px;
+        width: 200px;
+        height: 35px;
+        font-size: 20px;
+        border: solid;
+        border-radius: 10px;
+        padding-left: 10px;
+        top: 15px;
+    }
+
+    #passwordBaru {
+        position: absolute;
+        left: 110px;
+        width: 200px;
+        height: 35px;
+        font-size: 20px;
+        border: solid;
+        border-radius: 10px;
+        padding-left: 10px;
+        top: 15px;
+    }
+
+    #birthDateBaru {
+        position: absolute;
+        left: 120px;
+        width: 200px;
+        height: 35px;
+        font-size: 20px;
+        border: solid;
+        border-radius: 10px;
+        padding-left: 10px;
+        top: 15px;
+    }
+
+    #emailBaru {
+        position: absolute;
+        left: 75px;
+        width: 200px;
+        height: 35px;
+        font-size: 20px;
+        border: solid;
+        border-radius: 10px;
+        padding-left: 10px;
+        top: 15px;
+    }
+
+    #phoneNumberBaru {
+        position: absolute;
+        left: 165px;
+        width: 200px;
+        height: 35px;
+        font-size: 20px;
+        border: solid;
+        border-radius: 10px;
+        padding-left: 10px;
+        top: 15px;
+    }
+
+    #gifLogout {
+        position: relative;
+        display: flex;
+        margin: auto;
+        top: 50%;
+        width: 600px;
+        transform: translate(0%, -50%);
+    }
+</style>
+
+<body>
+    <div id="div">
+
+        <ul id="ul" class="tes">
+            <li class="li" id="active"><a href="userview.html"> HOME</a></li>
+            <li class="li"><a href="shopping.html">SHOPPING</a></li>
+            <li class="li"><a onclick="logout()">LOG OUT</a></li>
+        </ul>
+        <div id="text">
+            <div id="centered">
+                <div class="box1">
+                    <img id="avatarimg" src="../admin/avatar.png" alt="">
+                    <button id="editProfile" onclick="editProfile()">Edit Profile</button>
+                    <button id="hapusAkun" onclick="hapusAkun()">Hapus Akun</button>
+                    <div id="biodata">
+                        <div class="biodata-text">
+                            <h2 id="username">Username :</h2>
+                            <h2 id="usernameAkun"></h2>
+                            <input type="text" id="usernameBaru" class="new">
+                        </div>
+                        <div class="biodata-text">
+                            <h2 id="password">Password:</h2>
+                            <h2 id="passwordAkun"></h2>
+                            <input type="password" id="passwordBaru" class="new">
+                        </div>
+                        <div class="biodata-text">
+                            <h2 id="birthdate">Birth Date:</h2>
+                            <h2 id="birthdateAkun"></h2>
+                            <input type="date" id="birthDateBaru" class="new">
+                        </div>
+                        <div class="biodata-text">
+                            <h2 id="gmail">Email:</h2>
+                            <h2 id="gmailAkun"></h2>
+                            <input type="email" id="emailBaru" class="new">
+                        </div>
+                        <div class="biodata-text">
+                            <h2 id="phonenumber">Phone Number:</h2>
+                            <h2 id="phonenumberAkun"></h2>
+                            <input type="number" id="phoneNumberBaru" minlength="10" class="new">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="application/javascript">
+    let usernameAkun = document.getElementById('usernameAkun')
+    let passwordAkun = document.getElementById('passwordAkun')
+    let birthdateAkun = document.getElementById('birthdateAkun')
+    let gmailAkun = document.getElementById('gmailAkun')
+    let phoneNumberAkun = document.getElementById('phonenumberAkun')
+    let editprofile = document.getElementById('editProfile')
+    let hapusakun = document.getElementById('hapusAkun')
+    let box1 = document.getElementsByClassName('box1')[0]
+    let avatarimg = document.getElementById('avatarimg')
+    let newData = document.getElementsByClassName('new')
+
+    let usernameBaru = document.getElementById('usernameBaru')
+    let passwordBaru = document.getElementById('passwordBaru')
+    let birthDateBaru = document.getElementById('birthDateBaru')
+    let emailBaru = document.getElementById('emailBaru')
+    let phoneNumberBaru = document.getElementById('phoneNumberBaru')
+
+
+
+    for (i = 0; i < newData.length; i++) {
+        newData[i].style.display = 'none'
+    }
+
+    if (sessionStorage.getItem('user') == null) {
+        alert('Anda Telah Logout, Silahkan Login Ulang')
+        window.location.href = '../index.html'
+    }
+
+    userFound = false
+    for (a = 0; a < localStorage.length; a++) {
+        if (sessionStorage.getItem('user') == localStorage.key(a)) {
+            userFound = true
+            break;
+        }
+    }
+    if (userFound === false) {
+        window.location.href = '../index.html'
+        console.log('user tidak ditemuka, harap login ulang')
+    }
+
+
+    let biodata = JSON.parse(sessionStorage.getItem('dataLogin'))
+    usernameAkun.textContent = biodata.username
+    passwordAkun.textContent = biodata.password
+    birthdateAkun.textContent = biodata.birthDate
+    gmailAkun.textContent = biodata.email
+    phoneNumberAkun.textContent = biodata.phoneNumber
+
+
+    let buttonSimpan = document.createElement('button')
+    buttonSimpan.textContent = 'Simpan'
+    box1.appendChild(buttonSimpan)
+    buttonSimpan.onclick = simpanBiodata
+    buttonSimpan.style.fontSize = '30px'
+    buttonSimpan.style.backgroundColor = 'green'
+    buttonSimpan.style.border = 'none'
+    buttonSimpan.style.borderRadius = '5px'
+    buttonSimpan.style.position = 'relative'
+    buttonSimpan.style.right = '130px'
+    buttonSimpan.style.top = '160px'
+    buttonSimpan.style.cursor = 'pointer'
+
+    buttonSimpan.style.display = 'none'
+
+    let buttonBatal = document.createElement('button')
+    buttonBatal.onclick = batal
+    buttonBatal.textContent = 'Batal'
+    box1.appendChild(buttonBatal)
+    buttonBatal.style.fontSize = '30px'
+    buttonBatal.style.backgroundColor = 'red'
+    buttonBatal.style.border = 'none'
+    buttonBatal.style.borderRadius = '5px'
+    buttonBatal.style.position = 'relative'
+    buttonBatal.style.right = '390px'
+    buttonBatal.style.top = '160px'
+    buttonBatal.style.cursor = 'pointer'
+    buttonBatal.style.display = 'none'
+
+    function editProfile() {
+        usernameAkun.style.display = 'none'
+        passwordAkun.style.display = 'none'
+        birthdateAkun.style.display = 'none'
+        gmailAkun.style.display = 'none'
+        phoneNumberAkun.style.display = 'none'
+
+        editprofile.style.display = 'none'
+        hapusakun.style.display = 'none'
+        buttonSimpan.style.display = 'block'
+        buttonBatal.style.display = 'block'
+
+        for (i = 0; i < newData.length; i++) {
+            newData[i].style.display = 'block'
+        }
+    }
+
+    function hapusAkun() {
+        sessionStorage.removeItem('user')
+        sessionStorage.removeItem('dataLogin')
+        localStorage.removeItem(biodata.username)
+        if (sessionStorage.getItem('user') == null) {
+            window.location.href = '../index.html'
+        }
+    }
+
+    function batal() {
+        location.reload()
+    }
+
+
+    function simpanBiodata() {
+        console.log(usernameBaru.value)
+        let sessionUsername = sessionStorage.getItem('user')
+        let biodataStorage = localStorage.getItem(sessionUsername)
+        let biodataValue = JSON.parse(biodataStorage)
+        let oldUsername = biodataValue.username
+        if (usernameBaru.value !== '') {
+            let oldData = localStorage.getItem(oldUsername)
+            biodataValue.username = usernameBaru.value
+            localStorage.setItem(biodataValue.username, JSON.stringify(oldData))
+            localStorage.removeItem(`${oldUsername}`)
+        }
+        if (passwordBaru.value !== '') {
+            biodataValue.password = passwordBaru.value
+        }
+        if (birthDateBaru.value !== '') {
+            biodataValue.birthDate = birthDateBaru.value
+        }
+        if (emailBaru.value !== '') {
+            biodataValue.email = emailBaru.value
+        }
+        if (phoneNumberBaru.value !== '') {
+            biodataValue.phoneNumber = phoneNumberBaru.value
+        }
+
+        localStorage.setItem(biodataValue.username, JSON.stringify(biodataValue))
+        sessionStorage.setItem('user', biodataValue.username)
+        sessionStorage.setItem('dataLogin', JSON.stringify(biodataValue))
+
+
+
+        location.reload()
+    }
+
+    let bgLogout = document.getElementById('div')
+    let gifLogout = document.createElement('img')
+    gifLogout.id = 'gifLogout'
+    gifLogout.src = 'imgAssets/logout.gif'
+
+    function logout() {
+        bgLogout.style.display = 'none'
+        document.body.appendChild(gifLogout)
+        setTimeout(() => {
+            sessionStorage.removeItem('dataLogin')
+            sessionStorage.removeItem('user')
+            window.location.href = '../index.html'
+        }, 3000)
+    }
+
+    if (sessionStorage.getItem('user') == null) {
+        alert('Anda Telah Logout, Silahkan Login Ulang')
+        window.location.href = '../index.html'
+    }
+</script>
+
+
+
+</html>
